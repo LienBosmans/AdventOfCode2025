@@ -11,3 +11,4 @@ Solutions with DuckDB SQL:
 -   [Day 05: Cafeteria](/Day05/Day05.py)
 -   [Day 06: Trash Compactor](/Day06/Day06.py)
 -   [Day 07: Laboratories](/Day07/Day07.py)
+-   [Day 08: Playground](/Day08/Day08.py)
