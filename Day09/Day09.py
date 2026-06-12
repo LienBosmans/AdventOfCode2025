@@ -69,7 +69,6 @@ sql_part2 = """--sql
     red_green_tiles as (
         select 
            ('polygon ((' || string_agg( printf('%d %d', x, y), ', ' order by tile_id) || '))')::geometry as good_floor
-           --  concat('polygon ((', ,  
         from 
             (
                 select * from input 
