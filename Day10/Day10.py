@@ -2,8 +2,8 @@ import duckdb
 
 folder = "Day10"
 
-input_file = f"{folder}/example.csv"
-# input_file = f"{folder}/input.csv"
+# input_file = f"{folder}/example.csv"
+input_file = f"{folder}/input.csv"
 
 raw_input = duckdb.read_csv(
     input_file,
@@ -58,7 +58,7 @@ sql_input = """--sql
     select * from recombine
 """
 input = duckdb.sql(sql_input)
-input.show()
+# input.show()
 
 sql_part1a = """--sql
     with recursive press_buttons(depth, machine_id, solution, light_state, pressed_buttons, is_solved)
@@ -114,3 +114,134 @@ sql_part1b = """--sql
 """
 part1b = duckdb.sql(sql_part1b)
 part1b.show()
+
+sql_part2a = """--sql
+    with recursive possible_button_presses (depth, machine_id, pressed_buttons, last_button_id, light_state, joltage_state)
+    as (
+        -- anchor
+        select
+            0 as depth,
+            machine_id,
+            [] as pressed_buttons,
+            0 as last_button_id,
+            repeat('0', len(light_diagram))::bitstring as light_state,
+            repeat([0], len(light_diagram)) as joltage_state
+        from 
+            input
+
+        union all
+
+        -- recursion
+        select 
+            bp.depth + 1 as depth,
+            bp.machine_id as machine_id,
+            list_append(bp.pressed_buttons, input.button_id) as pressed_buttons,
+            input.button_id as last_button_id,
+            xor(bp.light_state, input.button_bitstring) as light_state,
+            list_transform(
+                bp.joltage_state, 
+                lambda x, i: x + (case when (i-1)::varchar in button then 1 else 0 end) 
+            ) as joltage_state
+        from 
+            possible_button_presses as bp
+            inner join input
+                on (
+                    bp.machine_id = input.machine_id
+                    and bp.last_button_id < input.button_id -- press each button maximum one time, order doesn't matter
+                )
+        where 
+            depth < 500 -- safety stop (inner join is real stop)
+    )
+
+    select
+        machine_id,
+        light_state,
+        joltage_state,
+        depth as number_of_presses,
+        pressed_buttons
+    from possible_button_presses
+    -- where depth > 0
+    group by all
+    order by machine_id, light_state
+"""
+part2a = duckdb.sql(sql_part2a)
+# part2a.show()
+
+sql_part2b = """--sql
+    with recursive press_buttons_smartly (depth, machine_id, pressed_buttons, og_joltage_req, joltage_requirement, joltage_state, light_diagram, button_presses)
+    as (
+        -- anchor
+        select 
+            0 as depth,
+            machine_id,
+            [] as pressed_buttons,
+            joltage_requirement::integer[] as og_joltage_req,
+            joltage_requirement::integer[] as joltage_requirement,
+            repeat([0], len(light_diagram)) as joltage_state,
+            array_to_string(list_transform(
+                joltage_requirement::integer[],
+                lambda x: x % 2
+            ), '')::bitstring as light_diagram,
+            0 as button_presses
+        from 
+            input
+        group by all
+
+        union all 
+
+        -- recursion
+        select 
+            pb.depth + 1 as depth,
+            pb.machine_id as machine_id,
+            concat(pb.pressed_buttons, [-pb.depth - 1], possible_buttons.pressed_buttons) as pressed_buttons,
+            pb.og_joltage_req as og_joltage_req,
+            list_transform(
+                pb.joltage_requirement,
+                lambda x, i: ( x - possible_buttons.joltage_state[i] )//2
+            ) as joltage_requirement,
+            list_transform(
+                    pb.joltage_state, 
+                    lambda x, i: x + (2**pb.depth) * possible_buttons.joltage_state[i]
+            ) as joltage_state,
+            array_to_string(list_transform(
+                joltage_requirement,
+                lambda x, i: (( x - possible_buttons.joltage_state[i] )//2 % 2)::integer
+            ), '')::bitstring as light_diagram,
+            pb.button_presses + (2**pb.depth) * possible_buttons.number_of_presses as button_presses
+        from 
+            press_buttons_smartly as pb
+            inner join part2a as possible_buttons
+                on (
+                    pb.machine_id = possible_buttons.machine_id
+                    and pb.light_diagram = possible_buttons.light_state
+                    and list_min( list_transform(
+                            pb.og_joltage_req,
+                            lambda x, i: x - pb.joltage_state[i] - (2**pb.depth) * possible_buttons.joltage_state[i]
+                        ) ) >= 0
+                )
+        where 
+            depth < 100
+    )
+
+    select * from press_buttons_smartly order by machine_id, depth
+
+"""
+part2b = duckdb.sql(sql_part2b)
+# part2b.show()
+
+sql_part2c = """--sql
+    with press_count as (
+        select 
+            machine_id,
+            min(button_presses) as fewest_presses,
+        from 
+            part2b
+        where 
+            list_max(joltage_requirement) = 0
+        group by machine_id
+    )
+
+    select sum(fewest_presses) as answer_part2 from press_count
+"""
+part2c = duckdb.sql(sql_part2c)
+part2c.show()
