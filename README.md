@@ -15,4 +15,5 @@ Solutions with DuckDB SQL:
 -   [Day 09: Movie Theater](/Day09/Day09.py)
 -   [Day 10: Factory](/Day10/Day10.py)
     -   Reddit post that inspired solution for part 2: [[2025 Day 10 (Part 2)] Bifurcate your way to victory!](https://www.reddit.com/r/adventofcode/comments/1pk87hl/2025_day_10_part_2_bifurcate_your_way_to_victory/)
--   [Day 11: Factory](/Day10/Day11.py)
+-   [Day 11: Factory](/Day11/Day11.py)
+-   [Day 12: Christmas Tree Farm](/Day12/Day12.py)
