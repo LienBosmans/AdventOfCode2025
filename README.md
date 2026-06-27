@@ -17,3 +17,8 @@ Solutions with DuckDB SQL:
     -   Reddit post that inspired solution for part 2: [[2025 Day 10 (Part 2)] Bifurcate your way to victory!](https://www.reddit.com/r/adventofcode/comments/1pk87hl/2025_day_10_part_2_bifurcate_your_way_to_victory/)
 -   [Day 11: Factory](/Day11/Day11.py)
 -   [Day 12: Christmas Tree Farm](/Day12/Day12.py)
+
+Articles that explain the solution:
+-   [Introduction](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-introduction-2a385ed8da8b)
+-   [Day 01: Secret Entrance](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-1-7220f21d6272)
+-   [Day 02: Gift Shop](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-2-7af62d267817)
