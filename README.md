@@ -22,3 +22,6 @@ Articles that explain the solution:
 -   [Introduction](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-introduction-2a385ed8da8b)
 -   [Day 01: Secret Entrance](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-1-7220f21d6272)
 -   [Day 02: Gift Shop](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-2-7af62d267817)
+-   [Day 03: Lobby](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-3-5bca5c0a3220)
+-   [Day 04: Printing Department](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-4-df36397dc73c)
+-   [Day 05: Cafeteria](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-5-efeff7612925)
