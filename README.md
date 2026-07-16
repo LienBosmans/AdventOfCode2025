@@ -25,3 +25,5 @@ Articles that explain the solution:
 -   [Day 03: Lobby](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-3-5bca5c0a3220)
 -   [Day 04: Printing Department](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-4-df36397dc73c)
 -   [Day 05: Cafeteria](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-5-efeff7612925)
+-   [Day 06: Trash Compactor](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-6-8cb544a9c3db)
+-   [Day 07: Laboratories](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-7-67d5837cf7e6)
