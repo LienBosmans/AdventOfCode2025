@@ -10,7 +10,7 @@ Solutions with DuckDB SQL:
 -   [Day 04: Printing Department](/Day04/Day04.py)
 -   [Day 05: Cafeteria](/Day05/Day05.py)
 -   [Day 06: Trash Compactor](/Day06/Day06.py)
--   [Day 07: Laboratories](/Day07/Day07.py)
+-   [Day 07: Laboratories](/Day07/Day07_rewrite.py)
 -   [Day 08: Playground](/Day08/Day08.py)
 -   [Day 09: Movie Theater](/Day09/Day09.py)
 -   [Day 10: Factory](/Day10/Day10.py)
@@ -27,3 +27,4 @@ Articles that explain the solution:
 -   [Day 05: Cafeteria](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-5-efeff7612925)
 -   [Day 06: Trash Compactor](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-6-8cb544a9c3db)
 -   [Day 07: Laboratories](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-7-67d5837cf7e6)
+-   [Day 08: Playground](https://medium.com/@lienbosmans/how-to-solve-advent-of-code-with-sql-2025-day-8-664e373a29d1)
